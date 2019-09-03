@@ -13,6 +13,9 @@ client.on("message", function (topic, payload) {
 
 client.publish("mqtt/demo", "hello world!")
 
+
+
+
 // // advance functionalities
 // client = mqtt.connect("ws://broker.hivemq.com:8000/mqtt")
 // client.subscribe("mqtt/demo", function (err){
