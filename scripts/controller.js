@@ -1,20 +1,34 @@
 // basic functionalities
-client = mqtt.connect("ws://broker.hivemq.com:8000/mqtt")
-client.subscribe("mqtt/demo")
 
-client.on("connect", function(){
+function connectFunc(){
+  console.log("Connecting..");
+  // client = mqtt.connect("ws://broker.hivemq.com:8000/mqtt")
+  client = mqtt.connect(document.getElementById('broker').value)
+  console.log(document.getElementById('broker').value);
+
+  client.on("connect", function(){
     console.log("Successfully connected");
-})
+  })
 
-client.on("message", function (topic, payload) {
-  console.log([topic, payload].join(": "));
-  client.end();
-})
+  client.on("message", function (topic, payload) {
+    console.log([topic, payload].join(": "));
+    // client.end();
+  })
+}
+function publishFunc(){
+  console.log("publish");
+  // client.publish("mqtt/demo", "hello world!");
+  client.publish(document.getElementById('pub-topic').value, document.getElementById('pub-payload').value)
+  console.log(document.getElementById('pub-topic').value);
+  console.log(document.getElementById('pub-payload').value);
+}
 
-client.publish("mqtt/demo", "hello world!")
-
-
-
+function subscribeFunc(){
+  console.log("subscribe");
+  // client.subscribe("mqtt/demo");
+  client.subscribe(document.getElementById('sub-topic').value);
+  console.log(document.getElementById('sub-topic').value);
+}
 
 // // advance functionalities
 // client = mqtt.connect("ws://broker.hivemq.com:8000/mqtt")
